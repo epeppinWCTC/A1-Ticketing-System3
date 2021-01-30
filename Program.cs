@@ -14,7 +14,7 @@ namespace A1_Ticketing_System
             do
             {
                  // ask user a question
-                Console.WriteLine("Welcome to Ticketing Systme for Peppin and Son's");
+                Console.WriteLine("Welcome to Ticketing System for Peppin and Son's");
                 Console.WriteLine("1) Read Ticket Log.");
                 Console.WriteLine("2) Add Tickets to Log.");
                 Console.WriteLine("Enter any other key to exit.");
@@ -78,22 +78,24 @@ namespace A1_Ticketing_System
                         Console.WriteLine("Enter Ticket Assigned Name");
                         // save the Assigned
                         string assigned = Console.ReadLine();
-                        // prompt for adding watching
+                        //Set variables for watching loop
                         string watchingResp;
                         string watchers;
                         List<string> watchingUsers = new List<string>();
                         for (int x = 0; x < 7; x++)
-                        {                    
+                        {  
+                            // prompt for adding watching                  
                             Console.WriteLine("Enter A Watching User? (Y/N)?");
                             watchingResp = Console.ReadLine().ToUpper();
                             if (watchingResp != "Y") {break;}
+                            //Prompt for names
                             Console.WriteLine("Enter Watching User's Name (First Last)");
                             watchingUsers.Add(Console.ReadLine());
                         }
-
+                        //join list as string with pipes
                         watchers = string.Join("|", watchingUsers);                    
                                        
-
+                        //write to file
                         sw.WriteLine("{0},{1},{2},{3},{4},{5},{6}", id,summary,status,priority,submitter,assigned,watchers);
                     }
                     sw.Close();
