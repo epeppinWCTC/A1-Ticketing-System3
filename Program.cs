@@ -28,15 +28,13 @@ namespace A1_Ticketing_System
                     {
                         // read data from file
                         StreamReader sr = new StreamReader(file);
-                            while (!sr.EndOfStream)
-                            {
-                            string line = sr.ReadLine();
-                            string[] arr = line.Split(',');
-                            
+                        string headerLine = sr.ReadLine();
+                        string line;
+                        while ((line = sr.ReadLine()) != null)
+                        {
                             Console.WriteLine(line);
-
-                            }
-                        
+                        }
+                        sr.Close();
                     }else
                     {
                         Console.WriteLine("File does not exist");
@@ -46,14 +44,15 @@ namespace A1_Ticketing_System
                     
                     //write file or append if file exists
                     StreamWriter sw = new StreamWriter(file, true);
-                     for (int i = 0; i < 7; i++)
+                    char response;
+                    do
                     {
                         // ask a question
                         Console.WriteLine("Enter a Ticket (Y/N)?");
                         // input the response
-                        string resp = Console.ReadLine().ToUpper();
-                        // if the response is anything other than "Y", stop asking
-                        if (resp != "Y") { break; }
+                        response = Convert.ToChar(Console.ReadLine().ToUpper());
+                        if(response == 'N')
+                            break;
                         // prompt for Ticket ID
                         Console.WriteLine("Enter the Ticket id.");
                         // save the Ticket ID
@@ -79,30 +78,34 @@ namespace A1_Ticketing_System
                         // save the Assigned
                         string assigned = Console.ReadLine();
                         //Set variables for watching loop
-                        string watchingResp;
+                        char watchingResp;
                         string watchers;
                         List<string> watchingUsers = new List<string>();
-                        for (int x = 0; x < 7; x++)
-                        {  
+                        do
+                        {
                             // prompt for adding watching                  
                             Console.WriteLine("Enter A Watching User? (Y/N)?");
-                            watchingResp = Console.ReadLine().ToUpper();
-                            if (watchingResp != "Y") {break;}
+                            watchingResp = Convert.ToChar(Console.ReadLine().ToUpper());
+                            if(watchingResp == 'N')
+                                break;
                             //Prompt for names
                             Console.WriteLine("Enter Watching User's Name (First Last)");
                             watchingUsers.Add(Console.ReadLine());
-                        }
+                        } while (watchingResp == 'Y');
+
                         //join list as string with pipes
-                        watchers = string.Join("|", watchingUsers);                    
-                                       
+                        watchers = string.Join("|", watchingUsers);
+
                         //write to file
-                        sw.WriteLine("{0},{1},{2},{3},{4},{5},{6}", id,summary,status,priority,submitter,assigned,watchers);
-                    }
+                        sw.WriteLine("{0},{1},{2},{3},{4},{5},{6}", id, summary, status, priority, submitter, assigned,
+                            watchers);
+                    } while (response == 'Y');
                     sw.Close();
                 }
 
 
             }while (choice == "1" || choice == "2");
+            
         }
     }
 }
