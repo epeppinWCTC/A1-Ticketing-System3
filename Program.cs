@@ -33,7 +33,6 @@ namespace A1_Ticketing_System
                         while (!sr.EndOfStream)
                         {
                             string line = sr.ReadLine();
-                            List<string> lineValues = line.Split(',').ToList();
                             Console.WriteLine(line);
                         }
                         sr.Close();
