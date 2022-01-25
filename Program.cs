@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace A1_Ticketing_System
 {
@@ -28,10 +29,11 @@ namespace A1_Ticketing_System
                     {
                         // read data from file
                         StreamReader sr = new StreamReader(file);
-                        string headerLine = sr.ReadLine();
-                        string line;
-                        while ((line = sr.ReadLine()) != null)
+                        sr.ReadLine();
+                        while (sr.Peek() != -1)
                         {
+                            string line = sr.ReadLine();
+                            List<string> lineValues = line.Split(',').ToList();
                             Console.WriteLine(line);
                         }
                         sr.Close();
@@ -97,9 +99,9 @@ namespace A1_Ticketing_System
                         watchers = string.Join("|", watchingUsers);
 
                         //write to file
-                        sw.WriteLine("{0},{1},{2},{3},{4},{5},{6}", id, summary, status, priority, submitter, assigned,
-                            watchers);
+                        sw.WriteLine($"{id},{summary},{status},{priority},{submitter},{assigned},{watchers}");
                     } while (response == 'Y');
+                    sw.Flush();
                     sw.Close();
                 }
 

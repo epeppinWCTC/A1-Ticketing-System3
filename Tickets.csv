@@ -1,3 +1,2 @@
-TicketID,Summary,Status,Priority,Submitter,Assigned,Watching
-1,This is a bug ticket,Open,High,Drew Kjell,Jane Doe,Drew Kjell|John Smith|Bill Jones
-2,Test 123,Open,High,Eric Peppin,Tyler Frozniak,Bob Pipps|GUy Guyton
+TicketID,Summary,Status,Priority,Submitter,Assigned,Watching1,test ticket,Open,High,Eric Peppin,Billy Bob,Guy Fierri|Test Guy
+1,Testing tickets,Open,High,Eric Peppin,Eric Peppin,bob peppin
