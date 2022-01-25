@@ -6,4 +6,11 @@
     <RootNamespace>A1_Ticketing_System</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Tickets.csv" />
+    <EmbeddedResource Include="Tickets.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
