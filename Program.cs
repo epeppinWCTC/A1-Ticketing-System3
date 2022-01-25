@@ -30,7 +30,7 @@ namespace A1_Ticketing_System
                         // read data from file
                         StreamReader sr = new StreamReader(file);
                         sr.ReadLine();
-                        while (sr.Peek() != -1)
+                        while (!sr.EndOfStream)
                         {
                             string line = sr.ReadLine();
                             List<string> lineValues = line.Split(',').ToList();
